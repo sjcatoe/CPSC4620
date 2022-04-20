@@ -3,7 +3,7 @@
     if (!$session_user) {
         exit();
     }
-    include_once("./include/config.php");
+    include("./include/config.php");
 
     $first_name = $last_name = "";
 
@@ -86,14 +86,10 @@
     <div class="container-fluid">
         <h3>Profile</h3>
 	    <a href="./updateProfile.php" class="btn btn-primary text-white">Update Profile</a>
-    </div>
-    <div class="container-fluid">
-        <h3>Contacts</h3>
-	    <a href="./userContacts.php" class="btn btn-primary text-white">Contacts</a>
-    </div>
-    <div class="container-fluid">
-        <h3>Messaging</h3>
-        <a href="./messageView.php" class="btn btn-primary text-white">Messaging</a>
+        
+	    <a href="./contacts.php" class="btn btn-primary text-white">View Contacts</a>
+   
+        <a href="./messages.php" class="btn btn-primary text-white">View Messages</a>
         <p><br></p>
     </div>
     

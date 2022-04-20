@@ -1,6 +1,6 @@
 <?php
     include("./include/session.php");
-    include_once("./include/config.php");
+    include("./include/config.php");
 
     $username = $password = "";
     $username_err = $password_err = $login_err = "";

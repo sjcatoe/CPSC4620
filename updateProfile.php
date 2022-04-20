@@ -1,7 +1,7 @@
 <?php
 
     include("./include/session.php");
-    include_once("./include/config.php");
+    include("./include/config.php");
 
     $username = $password = $first_name = $last_name = $confirm_password = "";
     $username_err = $password_err = $first_name_err = $last_name_err = $confirm_password_err = "";
