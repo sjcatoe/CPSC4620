@@ -11,22 +11,22 @@
     $file_err = $upload_err = "";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $date = date('Y-m-d_H-i-s');
-        $mediaID = uniqid().$date;
-        $storage_dir = "./content/";
-        if(!is_dir($storage_dir)){
-            mkdir($storage_dir);
+        $uploadDir = "./media/";
+        if(!is_dir($uploadDir)){
+            mkdir($uploadDir);
         }
-        $newFile = basename($_FILES['file']['name']);
-        $pathway = $storage_dir.$mediaID.$newFile;
+        $file = basename($_FILES['file']['name']);
+        $date = date('Y-m-d H:i:s');
+        $mediaID = uniqid();
+        $pathway = $uploadDir.$mediaID.$file;
 
-        $fileType = $_FILES['file']['name'];
-        $type = "IMG";
+        $fileType = $_FILES['file']['type'];
+        $type = "IMAGE";
         if (strstr($fileType, "video/")) {
-            $type = "VID";
+            $type = "VIDEO";
         }
         if (strstr($fileType, "audio/")) {
-            $type = "AUD";
+            $type = "AUDIO";
         }
 
         $title = $_POST['title'];
@@ -39,13 +39,13 @@
 
         $numViews = 0;
 
-        if(move_uploaded_file($_FILES['file']['name'], $pathway)) {
+        if(move_uploaded_file($_FILES['file']['tmp_name'], $pathway)) {
             
             $stmt = mysqli_prepare($db, "INSERT INTO media (MediaID, Title, Description, Pathway, DateAdded, Category, numViews, PublisherID, Type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)") or die("Error");
             mysqli_stmt_bind_param($stmt, "ssssssiss", $param_MediaID, $param_Title, $param_Description, $param_Pathway, $param_DateAdded, $param_Category, $param_numViews, $param_PublisherID, $param_Type);
                 
             // Set parameters
-            $param_MediaID = $media_id;
+            $param_MediaID = $mediaID;
             $param_Title = $title;
             $param_Description =  $description;
             $param_Pathway = $pathway;
@@ -58,7 +58,7 @@
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 foreach($keywords as $tempKW) {
-                    $stmt = mysqli_prepare($db, "INSERT INTO keywords (keyword, MediaID VALUES (?, ?)") or die("Error");
+                    $stmt = mysqli_prepare($db, "INSERT INTO keywords (keyword, MediaID) VALUES (?, ?)") or die("Error");
                     mysqli_stmt_bind_param($stmt, "ss", $param_keyword, $param_MediaID);
                     $param_keyword = $tempKW;
                     mysqli_stmt_execute($stmt);
@@ -66,7 +66,8 @@
                 mysqli_stmt_close($stmt);
                 mysqli_close($db);
                 header("location: ./account.php");
-            } else{
+            } else{;
+                //echo "$fileType, $param_Title, $param_Description, $param_Pathway, $param_DateAdded, $param_Category, $param_numViews, $param_PublisherID, $param_Type";
                 echo "Something went wrong. Please try again later.";
             }
 

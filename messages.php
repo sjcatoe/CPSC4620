@@ -4,7 +4,7 @@
         exit();
     }
     include("./include/config.php");
-    include("./include/formatMsg.php");
+    include("./include/formatter.php");
 
     $contacts = $received_msg = $sent_msg = $msgs = "";
     

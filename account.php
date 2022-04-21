@@ -4,6 +4,7 @@
         exit();
     }
     include("./include/config.php");
+    include("./include/formatter.php");
 
     $first_name = $last_name = "";
 
@@ -24,8 +25,24 @@
     }else {
         echo "Something went wrong. Please try again later.";
     }
-    // Close statement
-    mysqli_stmt_close($stmt);
+    
+    $user_vids = "";
+    $stmt = mysqli_prepare($db, "SELECT * FROM media WHERE PublisherID=?") or die("Error");
+    mysqli_stmt_bind_param($stmt, "s", $param_user);
+    $param_user = $session_user;
+    if (mysqli_stmt_execute($stmt)) {
+        mysqli_stmt_store_result($stmt);
+        if(mysqli_stmt_num_rows($stmt) > 0){
+            mysqli_stmt_bind_result($stmt, $mediaID, $title, $description, $pathway, $date, $category, $numViews, $publisherID, $type);
+            while(mysqli_stmt_fetch($stmt)){
+                $user_vids = $user_vids.MediaList($mediaID, $title, $description, $pathway, $date, $category, $numViews, $publisherID, $type);
+            } 
+        } else {
+            $media_err = "Content not found.";
+        }
+    } else {
+        echo "Something went wrong. Please try again later.";
+    }
     
 ?>
 
@@ -43,15 +60,28 @@
 <body>
     <?php include("./include/navbar.php"); ?>
     <div class="container-fluid">
-        <?php echo "<h2>Hello, $first_name $last_name</h2>" ?>
-        <a href="./upload.php" class="btn btn-primary text-white">Upload</a>
+        <div class="row">
+            <div class="col-6">
+                <?php echo "<h2>Hello, $first_name $last_name</h2>" ?>
+                <a href="./upload.php" class="btn btn-primary text-white">Upload</a>
+            </div>
+            <div class="col-6">
+                <h3>Profile</h3>
+                <a href="./updateProfile.php" class="btn btn-primary text-white">Update Profile</a>
+                
+                <a href="./contacts.php" class="btn btn-primary text-white">View Contacts</a>
+        
+                <a href="./messages.php" class="btn btn-primary text-white">View Messages</a>
+                <p><br></p>
+            </div>
+        </div>
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-8">
+            <div class="col-12">
                 <h3>Your Media</h3>
-                <div class="border border-primary p-3" style="max-height:500px; overflow-y:scroll">
-                    <?php echo ($user_uploads) ? $user_uploads : "No media found."; ?>
+                <div class="border border-primary p-3" style="max-height:400px; overflow-y:scroll">
+                    <?php echo ($user_vids) ? $user_vids : "No media found."; ?>
                 </div>
             </div>
             <div class="col">
@@ -81,16 +111,6 @@
             </div>
         </div>
 
-    </div>
-
-    <div class="container-fluid">
-        <h3>Profile</h3>
-	    <a href="./updateProfile.php" class="btn btn-primary text-white">Update Profile</a>
-        
-	    <a href="./contacts.php" class="btn btn-primary text-white">View Contacts</a>
-   
-        <a href="./messages.php" class="btn btn-primary text-white">View Messages</a>
-        <p><br></p>
     </div>
     
 </body>
