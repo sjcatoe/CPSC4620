@@ -58,31 +58,49 @@ function view_reply($senderID, $receiverID, $message, $messageID, $replyID) {
 }
 
 function showMedia($mediaID, $title, $description, $pathway, $date, $category, $numViews, $userID, $type) {
-
+    $mediaHTML = "<div class='container'>
+                    <h2>$title</h2>
+                </div>";
     if ($type == "IMAGE") {
-        $mediaHTML = "<div class='container border'>
-                        <img style='max-width:600px max-height:450px' src=$pathway>
-                    </div>";
+        $mediaHTML = $mediaHTML . "<div class='container border'>
+                                        <img width='600' height='450' src=$pathway>
+                                    </div>";
                     
     } else if ($type == "VIDEO") {
-        $mediaHTML = "<div class='container border'>
-                        <video width='600' height='450' controls>
-                            <source src=$pathway type='video/mp4'>
-                                Your browser does not support the video tag.
-                        </video> 
-                    </div>";
+        $mediaHTML = $mediaHTML . "<div class='container border'>
+                                        <video width='600' height='450' controls>
+                                            <source src=$pathway type='video/mp4'>
+                                                Your browser does not support the video tag.
+                                        </video> 
+                                    </div>";
                     
     } else if ($type == "AUDIO") {
-        $mediaHTML = "<div class='container border'>
-                        <audio controls autoplay>
-                            <source src=$pathway type='audio/ogg'>
-                            <source src=$pathway type='audio/mpeg'>
-                            <source src=$pathway type='audio/wav'>
-                            Audio type not supported.
-                        </audio>
-                    </div>";
+        $mediaHTML = $mediaHTML . "<div class='container border'>
+                                        <audio controls autoplay>
+                                            <source src=$pathway type='audio/ogg'>
+                                            <source src=$pathway type='audio/mpeg'>
+                                            <source src=$pathway type='audio/wav'>
+                                            Audio type not supported.
+                                        </audio>
+                                    </div>";
                     
     }
+    $mediaHTML = $mediaHTML . "<div class='container'>
+                                <h6>$numViews view(s)</h6>
+                            </div>";
+    $mediaHTML = $mediaHTML . "<div class='container border-bottom'>
+                                <h6>$userID</h6>
+                            </div>";
+    $mediaHTML = $mediaHTML . "<div class='container border-bottom'>
+                                <h6>Uploaded on $date</h6>
+                            </div>";
+    $mediaHTML = $mediaHTML . "<div class='container'>
+                                <h6>$description</h6>
+                            </div>";
+    $mediaHTML = $mediaHTML . "<div class='container-fluid'>
+                                <a href=$pathway class='btn btn-primary' role='button' aria-pressed='true'>Download</a>
+                            </div>";
+
     return $mediaHTML;
 }
 
