@@ -41,10 +41,10 @@
             <form action="./browse.php" method="post" autocomplete="off">
             <div style="text-align: center">
                 <button class="btn btn-secondary text-white" name="browse" type="submit" value="music">Music</button><BR><BR>
+                <button class="btn btn-secondary text-white" name="browse" type="submit" value="acadmics">Acadmics</button><BR><BR>
                 <button class="btn btn-secondary text-white" name="browse" type="submit" value="gaming">Gaming</button><BR><BR>
-                <button class="btn btn-secondary text-white" name="browse" type="submit" value="animals">Animals</button><BR><BR>
                 <button class="btn btn-secondary text-white" name="browse" type="submit" value="sports">Sports</button><BR><BR>
-                <button class="btn btn-secondary text-white" name="browse" type="submit" value="comedy">Comedy</button><BR><BR>
+                <button class="btn btn-secondary text-white" name="browse" type="submit" value="nature">Nature</button><BR><BR>
                 <button class="btn btn-secondary text-white" name="browse" type="submit" value="news">News</button><BR><BR>
                 <button class="btn btn-secondary text-white" name="browse" type="submit" value="other">Other</button>
             </div>

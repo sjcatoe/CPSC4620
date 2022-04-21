@@ -120,20 +120,20 @@
                     <label class="form-check-label" for="music">Music</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="category" id="gaming" value="gaming">
-                    <label class="form-check-label" for="gaming">Gaming</label>
+                    <input class="form-check-input" type="radio" name="category" id="academics" value="academics">
+                    <label class="form-check-label" for="academics">Academics</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="category" id="animals" value="animals">
-                    <label class="form-check-label" for="animals">Animals</label>
+                    <input class="form-check-input" type="radio" name="category" id="gaming" value="gaming">
+                    <label class="form-check-label" for="gaming">Gaming</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="category" id="sports" value="sports">
                     <label class="form-check-label" for="sports">Sports</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="category" id="comedy" value="comedy">
-                    <label class="form-check-label" for="comedy">Comedy</label>
+                    <input class="form-check-input" type="radio" name="category" id="nature" value="nature">
+                    <label class="form-check-label" for="nature">Nature</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="category" id="news" value="news">
