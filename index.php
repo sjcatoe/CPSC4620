@@ -38,15 +38,15 @@
     <div class="row">
         <div class="col-md-2" style="background-color:#DCDCDC;">
             <h6 style="text-align:center">Browse by Category</h6>
-            <form action="./browse.php" method="post" autocomplete="off">
+            <form action="./categories.php" method="post" autocomplete="off">
             <div style="text-align: center">
-                <button class="btn btn-secondary text-white" name="browse" type="submit" value="music">Music</button><BR><BR>
-                <button class="btn btn-secondary text-white" name="browse" type="submit" value="acadmics">Acadmics</button><BR><BR>
-                <button class="btn btn-secondary text-white" name="browse" type="submit" value="gaming">Gaming</button><BR><BR>
-                <button class="btn btn-secondary text-white" name="browse" type="submit" value="sports">Sports</button><BR><BR>
-                <button class="btn btn-secondary text-white" name="browse" type="submit" value="nature">Nature</button><BR><BR>
-                <button class="btn btn-secondary text-white" name="browse" type="submit" value="news">News</button><BR><BR>
-                <button class="btn btn-secondary text-white" name="browse" type="submit" value="other">Other</button>
+                <button class="btn btn-secondary text-white" name="category" type="submit" value="Music">Music</button><BR><BR>
+                <button class="btn btn-secondary text-white" name="category" type="submit" value="Acadmics">Acadmics</button><BR><BR>
+                <button class="btn btn-secondary text-white" name="category" type="submit" value="Gaming">Gaming</button><BR><BR>
+                <button class="btn btn-secondary text-white" name="category" type="submit" value="Sports">Sports</button><BR><BR>
+                <button class="btn btn-secondary text-white" name="category" type="submit" value="Nature">Nature</button><BR><BR>
+                <button class="btn btn-secondary text-white" name="category" type="submit" value="News">News</button><BR><BR>
+                <button class="btn btn-secondary text-white" name="category" type="submit" value="Other">Other</button>
             </div>
             </form>
         </div>

@@ -116,32 +116,32 @@
             <div class="form-group">
                 <label>Category</label>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="category" id="music" value="music">
-                    <label class="form-check-label" for="music">Music</label>
+                    <input class="form-check-input" type="radio" name="category" id="Music" value="Music">
+                    <label class="form-check-label" for="Music">Music</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="category" id="academics" value="academics">
-                    <label class="form-check-label" for="academics">Academics</label>
+                    <input class="form-check-input" type="radio" name="category" id="Academics" value="Academics">
+                    <label class="form-check-label" for="Academics">Academics</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="category" id="gaming" value="gaming">
-                    <label class="form-check-label" for="gaming">Gaming</label>
+                    <input class="form-check-input" type="radio" name="category" id="Gaming" value="Gaming">
+                    <label class="form-check-label" for="Gaming">Gaming</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="category" id="sports" value="sports">
-                    <label class="form-check-label" for="sports">Sports</label>
+                    <input class="form-check-input" type="radio" name="category" id="Sports" value="Sports">
+                    <label class="form-check-label" for="Sports">Sports</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="category" id="nature" value="nature">
-                    <label class="form-check-label" for="nature">Nature</label>
+                    <input class="form-check-input" type="radio" name="category" id="Nature" value="Nature">
+                    <label class="form-check-label" for="Nature">Nature</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="category" id="news" value="news">
-                    <label class="form-check-label" for="news">News</label>
+                    <input class="form-check-input" type="radio" name="category" id="News" value="News">
+                    <label class="form-check-label" for="News">News</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="category" id="other" value="other" checked>
-                    <label class="form-check-label" for="other">Other</label>
+                    <input class="form-check-input" type="radio" name="category" id="Other" value="Other" checked>
+                    <label class="form-check-label" for="Other">Other</label>
                 </div>
             </div>
             <label for="submit"><?php echo $upload_err ?></label>
