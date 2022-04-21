@@ -19,7 +19,12 @@
             mysqli_stmt_store_result($stmt);
             if(mysqli_stmt_num_rows($stmt) > 0){
                 mysqli_stmt_bind_result($stmt, $mediaID, $title, $description, $pathway, $date, $category, $numViews, $userID, $type);
-                mysqli_stmt_fetch($stmt); 
+                mysqli_stmt_fetch($stmt);
+                $stmt2 = mysqli_prepare($db, "UPDATE media SET numViews=? WHERE MediaID=?") or die("Error");
+                mysqli_stmt_bind_param($stmt2, "is", $param_numViews, $param_MediaID);
+                $param_numViews = $numViews + 1;
+                $param_MediaID = $mediaID;
+                mysqli_stmt_execute($stmt2);
 
     
             } else {
@@ -43,5 +48,6 @@
 <body>
     <?php include("./include/navbar.php"); ?>
     <?php echo ($media_err) ? "Content not available..." : showMedia($mediaID, $title, $description, $pathway, $date, $category, $numViews, $userID, $type); ?>
+
 </body>
 </html>
