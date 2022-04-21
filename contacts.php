@@ -17,38 +17,42 @@
         
         
         if($contact_username != ""){
-
-            $stmt = mysqli_prepare($db, "SELECT ContactID FROM contacts WHERE UserID=? AND ContactID=?") or die("Error");
-            mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_contact_username);
-            
-            $param_username = $session_user;
-            $param_contact_username = $contact_username;
-
-            // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                mysqli_stmt_store_result($stmt);
-                if(mysqli_stmt_num_rows($stmt) == 1){
-                    $username_err = "$contact_username is already in your contact list.";
-                } else {
-                    $stmt = mysqli_prepare($db, "SELECT username FROM users WHERE username=?") or die("Error");
-                    mysqli_stmt_bind_param($stmt, "s", $param_contact_username);
-                    mysqli_stmt_execute($stmt);
-                    mysqli_stmt_store_result($stmt);
-                    if(mysqli_stmt_num_rows($stmt) == 0){
-                        $username_err = "$contact_username is not associated with any accounts.";
-                    } else {
-                        $stmt = mysqli_prepare($db, "INSERT INTO contacts (UserID, ContactID) VALUES (?, ?)") or die("Error");
-                        mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_contact_username);
-                        mysqli_stmt_execute($stmt);
-                        
-                        $stmt = mysqli_prepare($db, "INSERT INTO contacts (UserID, ContactID) VALUES (?, ?)") or die("Error");
-                        mysqli_stmt_bind_param($stmt, "ss", $param_contact_username, $param_username);
-                        mysqli_stmt_execute($stmt);
-                        $username_err = "$contact_username added to contact list.";
-                    }
-                }
+            if($contact_username == $session_user) {
+                $username_err = "You cannot add yourself...";
             } else {
-                echo "Something went wrong. Please try again later.";
+                
+                $stmt = mysqli_prepare($db, "SELECT ContactID FROM contacts WHERE UserID=? AND ContactID=?") or die("Error");
+                mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_contact_username);
+                
+                $param_username = $session_user;
+                $param_contact_username = $contact_username;
+
+                // Attempt to execute the prepared statement
+                if(mysqli_stmt_execute($stmt)){
+                    mysqli_stmt_store_result($stmt);
+                    if(mysqli_stmt_num_rows($stmt) == 1){
+                        $username_err = "$contact_username is already in your contact list.";
+                    } else {
+                        $stmt = mysqli_prepare($db, "SELECT username FROM users WHERE username=?") or die("Error");
+                        mysqli_stmt_bind_param($stmt, "s", $param_contact_username);
+                        mysqli_stmt_execute($stmt);
+                        mysqli_stmt_store_result($stmt);
+                        if(mysqli_stmt_num_rows($stmt) == 0){
+                            $username_err = "$contact_username is not associated with any accounts.";
+                        } else {
+                            $stmt = mysqli_prepare($db, "INSERT INTO contacts (UserID, ContactID) VALUES (?, ?)") or die("Error");
+                            mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_contact_username);
+                            mysqli_stmt_execute($stmt);
+                            
+                            $stmt = mysqli_prepare($db, "INSERT INTO contacts (UserID, ContactID) VALUES (?, ?)") or die("Error");
+                            mysqli_stmt_bind_param($stmt, "ss", $param_contact_username, $param_username);
+                            mysqli_stmt_execute($stmt);
+                            $username_err = "$contact_username added to contact list.";
+                        }
+                    }
+                } else {
+                    echo "Something went wrong. Please try again later.";
+                }
             }
         }
 
